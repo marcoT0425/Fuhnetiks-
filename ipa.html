@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Custom IPA Maker – Full Edition</title>
+<style>
+  :root {
+    --bg: #0f1117; --surface: #1a1d27; --surface2: #252836; --border: #2e3345;
+    --text: #e8eaf0; --muted: #9ba1b5; --accent: #6c8cff; --accent-hover: #8aa4ff;
+    --success: #3ecf8e; --danger: #ff6b6b;
+    --radius: 10px;
+    --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --mono: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.5; min-height: 100vh; padding: 16px; }
+  h1 { font-size: 1.35rem; font-weight: 700; margin-bottom: 2px; }
+  .subtitle { color: var(--muted); font-size: 0.84rem; margin-bottom: 12px; }
+
+  .mode-tabs { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; max-width: 1500px; margin-left: auto; margin-right: auto; }
+  .mode-tab {
+    background: var(--surface2); border: 1px solid var(--border); color: var(--muted);
+    padding: 7px 14px; border-radius: 999px; font-size: 0.88rem; cursor: pointer; font-weight: 500;
+  }
+  .mode-tab:hover { color: var(--text); border-color: var(--accent); }
+  .mode-tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  .layout { display: grid; grid-template-columns: 340px 1fr; gap: 14px; max-width: 1500px; margin: 0 auto; }
+  @media (max-width: 960px) { .layout { grid-template-columns: 1fr; } }
+
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 13px; margin-bottom: 13px; }
+  .card h2 { font-size: 0.93rem; font-weight: 600; margin-bottom: 9px; }
+
+  .tabs { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 9px; }
+  .tab { background: var(--surface2); border: 1px solid var(--border); color: var(--muted); padding: 4px 10px; border-radius: 999px; font-size: 0.79rem; cursor: pointer; }
+  .tab:hover { color: var(--text); border-color: var(--accent); }
+  .tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  label { display: block; font-size: 0.76rem; color: var(--muted); margin-bottom: 3px; }
+  input, textarea, select {
+    width: 100%; background: var(--bg); border: 1px solid var(--border); color: var(--text);
+    border-radius: 6px; padding: 7px 9px; font-size: 0.89rem; font-family: inherit; margin-bottom: 8px;
+  }
+  input:focus, textarea:focus { outline: none; border-color: var(--accent); }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+  .symbol-row { display: grid; grid-template-columns: 1fr auto; gap: 7px; align-items: end; margin-bottom: 8px; }
+  .symbol-row input { margin-bottom: 0; }
+  .checkbox-row { display: flex; align-items: center; gap: 7px; margin-bottom: 8px; font-size: 0.86rem; }
+  .checkbox-row input { width: auto; margin: 0; }
+
+  button { background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 7px 12px; font-size: 0.86rem; font-weight: 500; cursor: pointer; }
+  button:hover { background: var(--accent-hover); }
+  button.secondary { background: var(--surface2); border: 1px solid var(--border); color: var(--text); }
+  button.secondary:hover { border-color: var(--accent); }
+  button.danger { background: var(--danger); }
+  button.small { padding: 3px 8px; font-size: 0.76rem; }
+
+  .item-list { max-height: 250px; overflow-y: auto; margin-bottom: 8px; }
+  .item { display: grid; grid-template-columns: 44px 1fr auto; gap: 7px; align-items: center; padding: 6px 8px; background: var(--surface2); border-radius: 8px; margin-bottom: 4px; font-size: 0.86rem; }
+  .item .sym { font-size: 1.22rem; font-family: var(--mono); text-align: center; }
+  .item .meta { color: var(--muted); font-size: 0.74rem; }
+  .item .actions { display: flex; gap: 3px; }
+
+  .converter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 700px) { .converter-grid { grid-template-columns: 1fr; } }
+  textarea { min-height: 80px; font-family: var(--mono); resize: vertical; }
+  .output { background: #0a0c12; border: 1px solid var(--border); border-radius: 8px; padding: 10px; font-family: var(--mono); font-size: 1.32rem; min-height: 80px; word-break: break-all; line-height: 1.5; white-space: pre-wrap; }
+
+  .panel-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(66px, 1fr)); gap: 6px; }
+  .panel-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 7px 2px; text-align: center; cursor: pointer; font-family: var(--mono); }
+  .panel-btn:hover { border-color: var(--accent); background: #2a3045; }
+  .panel-btn .sym { font-size: 1.18rem; display: block; }
+  .panel-btn .sc { font-size: 0.65rem; color: var(--muted); margin-top: 1px; }
+  .panel-btn .name { font-size: 0.58rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  .toolbar { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+  .status { font-size: 0.79rem; color: var(--muted); margin-top: 6px; }
+  .status.error { color: var(--danger); }
+  .status.ok { color: var(--success); }
+  .empty { text-align: center; color: var(--muted); padding: 20px 8px; font-size: 0.86rem; }
+  .hint { font-size: 0.73rem; color: var(--muted); margin-top: -3px; margin-bottom: 7px; }
+
+  .dict-entry { background: var(--surface2); border-radius: 8px; padding: 10px 12px; margin-bottom: 6px; border-left: 3px solid var(--accent); }
+  .dict-entry .word { font-size: 1.06rem; font-weight: 600; margin-bottom: 2px; }
+  .dict-entry .ipa { font-family: var(--mono); font-size: 1.16rem; color: #a8c0ff; margin-bottom: 3px; }
+  .dict-entry .shortcuts { font-family: var(--mono); font-size: 0.79rem; color: var(--muted); margin-bottom: 4px; }
+  .dict-entry .tags { display: flex; flex-wrap: wrap; gap: 4px; font-size: 0.75rem; }
+  .tag { background: var(--bg); border: 1px solid var(--border); border-radius: 999px; padding: 2px 8px; color: var(--muted); }
+  .tag.pos { border-color: #6c8cff; color: #a8c0ff; }
+  .tag.register { border-color: #3ecf8e; color: #7dcea0; }
+  .dict-actions { margin-top: 5px; display: flex; gap: 4px; }
+
+  .typer-result { background: var(--surface2); border-radius: 8px; padding: 10px 12px; margin-bottom: 6px; border-left: 3px solid var(--success); }
+  .typer-result .ortho { font-size: 1rem; font-weight: 600; }
+  .typer-result .ipa { font-family: var(--mono); font-size: 1.28rem; color: #a8c0ff; margin: 2px 0; }
+  .typer-result .meta { font-size: 0.77rem; color: var(--muted); }
+  .typer-result.missing { border-left-color: var(--danger); }
+  .typer-result.missing .ipa { color: var(--danger); font-size: 0.9rem; }
+
+  .pos-list { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 7px; }
+  .pos-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 999px; padding: 2px 8px; font-size: 0.75rem; cursor: pointer; color: var(--muted); }
+  .pos-chip:hover, .pos-chip.active { border-color: var(--accent); color: var(--accent); }
+
+  .cutter-preview { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 9px; margin-top: 7px; font-family: var(--mono); font-size: 0.84rem; max-height: 220px; overflow-y: auto; }
+  .cutter-preview div { padding: 3px 0; border-bottom: 1px solid var(--border); }
+  .cutter-preview div:last-child { border-bottom: none; }
+
+  .guide-section { margin-bottom: 22px; }
+  .guide-section h3 { font-size: 1.05rem; margin-bottom: 8px; color: var(--accent); }
+  .guide-section p, .guide-section li { font-size: 0.9rem; margin-bottom: 6px; }
+  .guide-section ul { padding-left: 20px; margin-bottom: 8px; }
+  .guide-section code { background: var(--surface2); padding: 1px 6px; border-radius: 4px; font-family: var(--mono); font-size: 0.85rem; }
+  .guide-section pre { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-family: var(--mono); font-size: 0.85rem; overflow-x: auto; margin: 8px 0; }
+
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+  <div style="max-width:1500px;margin:0 auto 5px;">
+    <h1>Custom IPA Maker – Full Edition</h1>
+    <p class="subtitle">
+      Symbols · Dictionary · Multi-word · Optional · Alternations · References · Contextual rules · 
+      Advanced Form Cutter (stress only with $) · Typer · Guide
+    </p>
+  </div>
+
+  <div class="mode-tabs">
+    <button class="mode-tab active" data-mode="symbols">IPA Symbols</button>
+    <button class="mode-tab" data-mode="dictionary">Dictionary</button>
+    <button class="mode-tab" data-mode="cutter">Form Cutter</button>
+    <button class="mode-tab" data-mode="typer">Typer</button>
+    <button class="mode-tab" data-mode="guide">Guide</button>
+  </div>
+
+  <!-- ==================== SYMBOLS ==================== -->
+  <div id="symbolsMode">
+    <div class="layout">
+      <div>
+        <div class="card">
+          <h2>Categories</h2>
+          <div class="tabs" id="tabs">
+            <button class="tab active" data-cat="vowels">Vowels</button>
+            <button class="tab" data-cat="consonants">Consonants</button>
+            <button class="tab" data-cat="diacritics">Diacritics</button>
+            <button class="tab" data-cat="ligatures">Ligatures</button>
+            <button class="tab" data-cat="intonation">Intonation</button>
+          </div>
+          <div class="item-list" id="itemList"><div class="empty">No items yet.</div></div>
+
+          <h2 style="margin-top:5px;">Add / Edit Mapping</h2>
+          <form id="addForm">
+            <input type="hidden" id="editId">
+            <label>Symbol (Unicode)</label>
+            <div class="symbol-row">
+              <input type="text" id="symbol" placeholder="ə  eɪ  ˈ  ˌ  or Space" required>
+              <button type="button" class="secondary small" id="insertSpaceBtn">Insert Space</button>
+            </div>
+            <div class="row">
+              <div>
+                <label>Shortcut (unique)</label>
+                <input type="text" id="shortcut" placeholder="EI  '  UH  DH" required>
+              </div>
+              <div>
+                <label>Name / Lexical set</label>
+                <input type="text" id="name" placeholder="face, primary stress…">
+              </div>
+            </div>
+            <div>
+              <label>Example</label>
+              <input type="text" id="example" placeholder="play, the…">
+            </div>
+            <div class="checkbox-row">
+              <input type="checkbox" id="spaceAfter" checked>
+              <label for="spaceAfter" style="margin:0;">Space after this symbol</label>
+            </div>
+            <div style="display:flex;gap:7px;">
+              <button type="submit" id="saveBtn">Add Mapping</button>
+              <button type="button" class="secondary" id="cancelEdit" style="display:none;">Cancel</button>
+            </div>
+            <div class="status" id="formStatus"></div>
+          </form>
+        </div>
+        <div class="card">
+          <h2>Symbol Data</h2>
+          <div class="toolbar">
+            <button class="secondary small" id="exportBtn">Export</button>
+            <button class="secondary small" id="importBtn">Import</button>
+            <button class="secondary small danger" id="clearBtn">Clear</button>
+          </div>
+          <input type="file" id="importFile" accept=".json" style="display:none;">
+          <div class="status" id="dataStatus"></div>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <h2>Converter</h2>
+          <div class="converter-grid">
+            <div>
+              <label>Shortcut input</label>
+              <textarea id="shortcutInput" placeholder="' P L EI"></textarea>
+              <div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;">
+                <button id="convertBtn">Convert</button>
+                <button class="secondary" id="clearInput">Clear</button>
+                <button class="secondary small" id="sendToDictBtn">→ Dictionary</button>
+              </div>
+            </div>
+            <div>
+              <label>IPA Output</label>
+              <div class="output" id="ipaOutput" contenteditable="true"></div>
+              <div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;">
+                <button class="secondary small" id="copyBtn">Copy</button>
+                <button class="secondary small" id="wrapBrackets">[ ]</button>
+                <button class="secondary small" id="wrapSlashes">/ /</button>
+              </div>
+            </div>
+          </div>
+          <div class="status" id="convertStatus"></div>
+        </div>
+        <div class="card">
+          <h2>
+            Symbol Panel
+            <select id="panelFilter" style="width:auto;margin:0;padding:3px 7px;font-size:0.76rem;">
+              <option value="all">All</option>
+              <option value="vowels">Vowels</option>
+              <option value="consonants">Consonants</option>
+              <option value="diacritics">Diacritics</option>
+              <option value="ligatures">Ligatures</option>
+              <option value="intonation">Intonation</option>
+            </select>
+          </h2>
+          <div class="panel-grid" id="panel"></div>
+          <div class="empty" id="panelEmpty" style="display:none;">No symbols yet.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== DICTIONARY ==================== -->
+  <div id="dictionaryMode" class="hidden">
+    <div class="layout">
+      <div>
+        <div class="card">
+          <h2>Add / Edit Entry</h2>
+          <form id="dictForm">
+            <input type="hidden" id="dictEditId">
+            <label>Word / pattern</label>
+            <input type="text" id="dictWord" placeholder="the · reali{s|z}e · colou*r" required>
+            <p class="hint"><code>{s|z}</code> · <code>*</code> optional · <code>_</code> space</p>
+
+            <label>Pronunciation code (contextual rules supported)</label>
+            <textarea id="dictShortcuts" rows="4" placeholder="default: DH UH
+before vowel: DH EE
+before consonant: DH UH" required></textarea>
+
+            <div class="row">
+              <div>
+                <label>POS (optional)</label>
+                <input type="text" id="dictPos" placeholder="v · n · det…">
+              </div>
+              <div>
+                <label>Register (optional)</label>
+                <input type="text" id="dictRegister">
+              </div>
+            </div>
+            <label>Collocations / Context (optional)</label>
+            <textarea id="dictCollocation" rows="2"></textarea>
+            <label>Notes (optional)</label>
+            <input type="text" id="dictNotes">
+
+            <div style="display:flex;gap:7px;margin-top:3px;">
+              <button type="submit" id="dictSaveBtn">Add Entry</button>
+              <button type="button" class="secondary" id="dictCancelEdit" style="display:none;">Cancel</button>
+            </div>
+            <div class="status" id="dictFormStatus"></div>
+          </form>
+        </div>
+        <div class="card">
+          <h2>Dictionary Data</h2>
+          <div class="toolbar">
+            <button class="secondary small" id="dictExportBtn">Export</button>
+            <button class="secondary small" id="dictImportBtn">Import</button>
+            <button class="secondary small danger" id="dictClearBtn">Clear</button>
+          </div>
+          <input type="file" id="dictImportFile" accept=".json" style="display:none;">
+          <div class="status" id="dictDataStatus"></div>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <h2>Lookup & List <span id="dictCount" style="font-size:0.79rem;font-weight:400;color:var(--muted);"></span></h2>
+          <input type="text" id="dictSearch" placeholder="Search…">
+          <div id="dictList" style="max-height:540px;overflow-y:auto;margin-top:9px;"><div class="empty">No entries yet.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== FORM CUTTER ==================== -->
+  <div id="cutterMode" class="hidden">
+    <div class="layout">
+      <div>
+        <div class="card">
+          <h2>Advanced Form Cutter</h2>
+          <p class="hint" style="margin-bottom:10px;">
+            <strong>Stress is optional</strong> — only applied when the part has <code>$</code><br>
+            Example: <code>(') P L EI | Y I NG$</code>
+          </p>
+
+          <label>Orthographic forms (pipe-separated)</label>
+          <input type="text" id="cutOrtho" placeholder="play|ing">
+          <p class="hint">Use (y) for letters that drop → tid(y)|ies|ied|ying</p>
+
+          <label>Pronunciation codes (pipe-separated)</label>
+          <input type="text" id="cutPron" placeholder="(') P L EI | Y I NG$">
+          <p class="hint">
+            <code>(')</code> = primary stress (ˈ) &nbsp;·&nbsp; <code>(ˌ)</code> = secondary<br>
+            <code>$</code> = apply stress to <strong>this</strong> form only<br>
+            <code>*</code> = full replacement (don’t append)
+          </p>
+
+          <div class="row">
+            <div>
+              <label>POS (optional)</label>
+              <input type="text" id="cutPos" placeholder="v">
+            </div>
+            <div>
+              <label>Register (optional)</label>
+              <input type="text" id="cutRegister">
+            </div>
+          </div>
+          <label>Notes (optional)</label>
+          <input type="text" id="cutNotes" placeholder="regular verb">
+
+          <div style="display:flex;gap:7px;margin-top:5px;flex-wrap:wrap;">
+            <button id="cutPreviewBtn">Preview</button>
+            <button id="cutGenerateBtn">Generate & Add to Dictionary</button>
+          </div>
+          <div class="status" id="cutStatus"></div>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <h2>Preview of expanded forms</h2>
+          <div class="cutter-preview" id="cutPreview">
+            <div class="empty" style="padding:14px;">Enter patterns and click Preview</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TYPER ==================== -->
+  <div id="typerMode" class="hidden">
+    <div class="layout" style="grid-template-columns:1fr;">
+      <div class="card">
+        <h2>Typer</h2>
+        <div class="row" style="margin-bottom:9px;">
+          <div>
+            <label>Words / Phrase</label>
+            <textarea id="typerInput" rows="3" placeholder="the apple&#10;play playing"></textarea>
+          </div>
+          <div>
+            <label>Optional POS filter</label>
+            <input type="text" id="typerPos" placeholder="v · n · det…">
+            <div class="pos-list" id="posChips">
+              <span class="pos-chip" data-pos="n">n</span>
+              <span class="pos-chip" data-pos="v">v</span>
+              <span class="pos-chip" data-pos="adj">adj</span>
+              <span class="pos-chip" data-pos="det">det</span>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:7px;margin-bottom:11px;">
+          <button id="typerRunBtn">Show Pronunciations</button>
+          <button class="secondary" id="typerClearBtn">Clear</button>
+        </div>
+        <div id="typerResults"><div class="empty">Type a phrase and click Show Pronunciations.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== GUIDE ==================== -->
+  <div id="guideMode" class="hidden">
+    <div style="max-width:900px;margin:0 auto;">
+      <div class="card">
+        <div class="guide-section">
+          <h3>Form Cutter – Stress (important)</h3>
+          <pre>(') P L EI | Y I NG$</pre>
+          <p>Result:</p>
+          <ul>
+            <li><strong>play</strong> → <code>P L EI</code> (no stress)</li>
+            <li><strong>playing</strong> → <code>ˈ P L EI Y I NG</code> (stress applied because of $)</li>
+          </ul>
+          <p>The stress marker <code>(')</code> or <code>(ˌ)</code> is only used on the forms that have <code>$</code>.</p>
+        </div>
+
+        <div class="guide-section">
+          <h3>Other Form Cutter features</h3>
+          <pre>tid(y)|ies|ied|ying
+T AI D I | *T AI D I Z | *T AI D I D | *T AI D I I NG</pre>
+          <p><code>*</code> = use this full pronunciation (don’t append to the stem)</p>
+        </div>
+
+        <div class="guide-section">
+          <h3>Contextual rules</h3>
+          <pre>default: DH UH
+before vowel: DH EE
+before consonant: DH UH</pre>
+        </div>
+
+        <div class="guide-section">
+          <h3>Pattern features</h3>
+          <ul>
+            <li><code>colou*r</code> → optional letter</li>
+            <li><code>reali{s|z}e</code> → alternation</li>
+            <li><code>ice_cream</code> → multi-word</li>
+            <li><code>[eight]</code> → reference</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const SYMBOLS_KEY = 'custom-ipa-maker-v12';
+  const DICT_KEY    = 'custom-ipa-dict-v11';
+
+  let items = [];
+  let dict  = [];
+  let currentCat = 'vowels';
+  let editId = null;
+  let dictEditId = null;
+
+  function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
+  function displaySymbol(sym) { return (sym === ' ' || sym === '\u0020') ? '␣' : sym; }
+  function normalizeSymbol(raw) { return (raw === '' || /^\s+$/.test(raw)) ? ' ' : raw; }
+  function displayWord(word) {
+    return (word || '').replace(/\{([^}]+)\}/g, (_,g)=>g.replace(/\|/g,'/')).replace(/\*/g,'').replace(/_/g,' ');
+  }
+  function escapeHtml(str) {
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+  function escapeRegexChar(ch) {
+    return ch.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function patternToRegex(pattern) {
+    let re = '';
+    const s = pattern || '';
+    let i = 0;
+    while (i < s.length) {
+      if (s[i] === '{') {
+        const end = s.indexOf('}', i);
+        if (end === -1) { re += escapeRegexChar('{'); i++; continue; }
+        const group = s.slice(i+1, end);
+        const alts = group.split('|').map(alt => alt.split('').map(ch => ch==='_'?' ':escapeRegexChar(ch)).join(''));
+        re += '(' + alts.join('|') + ')';
+        i = end + 1;
+      } else if (s[i+1] === '*') {
+        re += (s[i]==='_' ? '( )?' : escapeRegexChar(s[i]) + '?');
+        i += 2;
+      } else if (s[i] === '_') {
+        re += ' '; i++;
+      } else if (s[i] === '*') {
+        i++;
+      } else {
+        re += escapeRegexChar(s[i]); i++;
+      }
+    }
+    return new RegExp('^' + re + '$', 'i');
+  }
+
+  function matchesPattern(typed, pattern) {
+    try { return patternToRegex(pattern).test(typed.replace(/\s+/g,' ').trim()); }
+    catch { return false; }
+  }
+
+  function normalizeForSearch(str) {
+    return (str||'').toLowerCase().replace(/\{([^}]+)\}/g,'$1').replace(/[_\s]+/g,' ').replace(/\*/g,'').trim();
+  }
+
+  function parseContextual(codeText) {
+    const lines = (codeText||'').split('\n').map(l=>l.trim()).filter(Boolean);
+    const rules = { default: null, before: {}, after: {} };
+    if (lines.length === 1 && !lines[0].includes(':')) {
+      rules.default = lines[0]; return rules;
+    }
+    lines.forEach(line => {
+      const m = line.match(/^(.+?):\s*(.+)$/i);
+      if (!m) { if (!rules.default) rules.default = line; return; }
+      const key = m[1].toLowerCase().trim();
+      const val = m[2].trim();
+      if (key === 'default' || key === 'base') rules.default = val;
+      else if (key.startsWith('before ')) rules.before[key.slice(7).trim()] = val;
+      else if (key.startsWith('after ')) rules.after[key.slice(6).trim()] = val;
+    });
+    if (!rules.default) rules.default = codeText.trim();
+    return rules;
+  }
+
+  function startsWithVowel(word) { return word && /^[aeiouæɑɒɛɪɔʊʌə]/i.test(word.trim()); }
+  function startsWithConsonant(word) { return word && !startsWithVowel(word) && /^[a-z]/i.test(word.trim()); }
+
+  function chooseCode(entry, prevWord, nextWord) {
+    const rules = parseContextual(entry.shortcuts || '');
+    let chosen = rules.default;
+    if (nextWord) {
+      if (rules.before['vowel'] && startsWithVowel(nextWord)) chosen = rules.before['vowel'];
+      if (rules.before['consonant'] && startsWithConsonant(nextWord)) chosen = rules.before['consonant'];
+      for (const [cond, code] of Object.entries(rules.before)) {
+        if (cond === 'vowel' || cond === 'consonant') continue;
+        const letters = cond.split(/[\s,|]+/).filter(Boolean);
+        if (letters.some(l => nextWord.toLowerCase().startsWith(l.toLowerCase()))) chosen = code;
+      }
+    }
+    if (prevWord) {
+      if (rules.after['vowel'] && startsWithVowel(prevWord)) chosen = rules.after['vowel'];
+      if (rules.after['consonant'] && startsWithConsonant(prevWord)) chosen = rules.after['consonant'];
+    }
+    return chosen || rules.default || entry.shortcuts || '';
+  }
+
+  function findByShortcut(sc) {
+    const lower = sc.toLowerCase();
+    return items.find(i => i.shortcut.toLowerCase() === lower);
+  }
+  function isShortcutTaken(sc, excludeId = null) {
+    const lower = sc.toLowerCase();
+    return items.some(i => i.shortcut.toLowerCase() === lower && i.id !== excludeId);
+  }
+  function findDictMatches(typedWord) {
+    return dict.filter(e => matchesPattern(typedWord.replace(/\s+/g,' ').trim(), e.word));
+  }
+  function findDictEntry(ref) {
+    const key = normalizeForSearch(ref);
+    let entry = dict.find(e => normalizeForSearch(e.word) === key);
+    if (entry) return entry;
+    const matches = findDictMatches(ref);
+    return matches.length ? matches[0] : null;
+  }
+  function expandReferences(str, depth=0) {
+    if (!str || depth > 6) return str || '';
+    return str.replace(/\[([^\]]+)\]/g, (m, ref) => {
+      const entry = findDictEntry(ref.trim());
+      if (entry && entry.shortcuts) {
+        const rules = parseContextual(entry.shortcuts);
+        return expandReferences(rules.default || entry.shortcuts, depth+1);
+      }
+      return m;
+    });
+  }
+  function convertShortcuts(shortcutStr) {
+    if (!shortcutStr || !shortcutStr.trim()) return '';
+    const expanded = expandReferences(shortcutStr.trim());
+    const tokens = expanded.split(/\s+/).filter(t => t.length);
+    let result = '';
+    tokens.forEach((tok, idx) => {
+      const found = findByShortcut(tok);
+      if (found) {
+        result += found.symbol;
+        if (found.spaceAfter && idx < tokens.length-1 && found.symbol !== ' ') result += ' ';
+      } else {
+        result += tok; // keeps ˈ and ˌ
+      }
+    });
+    return result;
+  }
+
+  // ---------- CORRECTED FORM CUTTER ----------
+  function parseCutter() {
+    const orthoRaw = document.getElementById('cutOrtho').value.trim();
+    const pronRaw  = document.getElementById('cutPron').value.trim();
+    if (!orthoRaw || !pronRaw) return null;
+
+    const orthoParts = orthoRaw.split('|').map(s => s.trim());
+    const pronParts  = pronRaw.split('|').map(s => s.trim());
+
+    if (orthoParts.length !== pronParts.length) {
+      return { error: `Mismatched parts: ${orthoParts.length} vs ${pronParts.length}` };
+    }
+
+    // Handle tid(y)
+    let stemOrtho = orthoParts[0];
+    let dropPart = '';
+    const parenMatch = stemOrtho.match(/^(.*)\((.+)\)$/);
+    if (parenMatch) {
+      stemOrtho = parenMatch[1];
+      dropPart  = parenMatch[2];
+    }
+
+    // Extract stress marker (') or (ˌ)
+    let stressMarker = '';
+    const stressMap = { "(')": "ˈ", "(ˌ)": "ˌ" };
+
+    const cleanPronParts = pronParts.map(p => {
+      let cleaned = p.trim();
+      for (const [key, val] of Object.entries(stressMap)) {
+        if (cleaned.startsWith(key)) {
+          stressMarker = val;
+          cleaned = cleaned.slice(key.length).trim();
+          break;
+        }
+      }
+      return cleaned;
+    });
+
+    const forms = [];
+
+    // Base form
+    const baseWord = parenMatch ? stemOrtho + dropPart : stemOrtho;
+    let baseCode = cleanPronParts[0].replace(/^\*/, '').replace(/\$$/, '').trim();
+
+    // Only add stress if THIS part has $
+    if (pronParts[0].includes('$') && stressMarker) {
+      baseCode = stressMarker + ' ' + baseCode;
+    }
+    forms.push({ word: baseWord, shortcuts: baseCode });
+
+    // Other forms
+    for (let i = 1; i < orthoParts.length; i++) {
+      const ending = orthoParts[i];
+      let pronPart = cleanPronParts[i];
+
+      const word = parenMatch ? stemOrtho + ending : stemOrtho + ending;
+      const isOverride = pronPart.startsWith('*');
+      const hasStressFlag = pronParts[i].includes('$');
+
+      pronPart = pronPart.replace(/^\*/, '').replace(/\$$/, '').trim();
+
+      let shortcuts;
+      if (isOverride) {
+        shortcuts = pronPart;
+      } else {
+        const stemCode = cleanPronParts[0].replace(/^\*/, '').replace(/\$$/, '').trim();
+        shortcuts = (stemCode + ' ' + pronPart).replace(/\s+/g, ' ').trim();
+      }
+
+      // Apply stress ONLY when this part has $
+      if (hasStressFlag && stressMarker) {
+        shortcuts = stressMarker + ' ' + shortcuts;
+      }
+
+      forms.push({ word, shortcuts });
+    }
+
+    return { forms };
+  }
+
+  function previewCutter() {
+    const result = parseCutter();
+    const preview = document.getElementById('cutPreview');
+    const status  = document.getElementById('cutStatus');
+    if (!result) {
+      preview.innerHTML = `<div class="empty">Enter both patterns</div>`;
+      status.textContent = '';
+      return;
+    }
+    if (result.error) {
+      preview.innerHTML = `<div class="empty" style="color:var(--danger)">${result.error}</div>`;
+      status.className = 'status error';
+      status.textContent = result.error;
+      return;
+    }
+    preview.innerHTML = result.forms.map(f => {
+      const ipa = convertShortcuts(f.shortcuts);
+      return `<div><strong>${escapeHtml(f.word)}</strong> → <span style="color:#a8c0ff">${escapeHtml(ipa)}</span> <span style="color:var(--muted);font-size:0.78rem;">(${escapeHtml(f.shortcuts)})</span></div>`;
+    }).join('');
+    status.className = 'status ok';
+    status.textContent = `${result.forms.length} forms ready`;
+  }
+
+  function generateCutter() {
+    const result = parseCutter();
+    const status = document.getElementById('cutStatus');
+    if (!result || result.error) {
+      status.className = 'status error';
+      status.textContent = result ? result.error : 'Invalid input';
+      return;
+    }
+    const pos = document.getElementById('cutPos').value.trim();
+    const register = document.getElementById('cutRegister').value.trim();
+    const notes = document.getElementById('cutNotes').value.trim();
+    let added = 0;
+    result.forms.forEach(f => {
+      const exists = dict.some(e => e.word === f.word && e.shortcuts === f.shortcuts && (e.pos||'') === pos);
+      if (!exists) {
+        dict.push({ id: uid(), word: f.word, shortcuts: f.shortcuts, pos, register, collocation: '', notes });
+        added++;
+      }
+    });
+    saveDict();
+    status.className = 'status ok';
+    status.textContent = `Added ${added} new entries (${result.forms.length} forms)`;
+    previewCutter();
+  }
+
+  // Storage
+  function saveSymbols() { localStorage.setItem(SYMBOLS_KEY, JSON.stringify(items)); }
+  function loadSymbols() { try { items = JSON.parse(localStorage.getItem(SYMBOLS_KEY)||'[]'); } catch { items = []; } }
+  function saveDict() { localStorage.setItem(DICT_KEY, JSON.stringify(dict)); }
+  function loadDict() { try { dict = JSON.parse(localStorage.getItem(DICT_KEY)||'[]'); } catch { dict = []; } }
+
+  // Render
+  function renderTabs() {
+    document.querySelectorAll('#tabs .tab').forEach(t => t.classList.toggle('active', t.dataset.cat === currentCat));
+  }
+  function renderList() {
+    const list = document.getElementById('itemList');
+    const filtered = items.filter(i => i.category === currentCat);
+    if (!filtered.length) { list.innerHTML = `<div class="empty">No items yet.</div>`; return; }
+    list.innerHTML = filtered.map(item => `
+      <div class="item">
+        <div class="sym">${displaySymbol(item.symbol)}</div>
+        <div>
+          <div><strong>${item.shortcut}</strong> → ${displaySymbol(item.symbol)}</div>
+          <div class="meta">${item.name?item.name+' · ':''}${item.example||''}${item.spaceAfter?' · space-after':' · no-space'}</div>
+        </div>
+        <div class="actions">
+          <button class="secondary small" onclick="startEdit('${item.id}')">Edit</button>
+          <button class="secondary small danger" onclick="removeItem('${item.id}')">×</button>
+        </div>
+      </div>`).join('');
+  }
+  function renderPanel() {
+    const filter = document.getElementById('panelFilter').value;
+    const panel = document.getElementById('panel');
+    const empty = document.getElementById('panelEmpty');
+    const shown = filter === 'all' ? items : items.filter(i => i.category === filter);
+    if (!shown.length) { panel.innerHTML=''; empty.style.display='block'; return; }
+    empty.style.display='none';
+    panel.innerHTML = shown.map(item => `
+      <div class="panel-btn" onclick="insertShortcut('${item.shortcut}')">
+        <span class="sym">${displaySymbol(item.symbol)}</span>
+        <span class="sc">${item.shortcut}</span>
+        <span class="name">${item.name||''}</span>
+      </div>`).join('');
+  }
+  function refreshSymbols() { renderTabs(); renderList(); renderPanel(); }
+
+  function renderDict() {
+    const q = normalizeForSearch(document.getElementById('dictSearch').value);
+    const list = document.getElementById('dictList');
+    const countEl = document.getElementById('dictCount');
+    let shown = dict;
+    if (q) {
+      shown = dict.filter(e =>
+        normalizeForSearch(e.word).includes(q) ||
+        (e.shortcuts||'').toLowerCase().includes(q) ||
+        (e.pos||'').toLowerCase().includes(q) ||
+        (e.register||'').toLowerCase().includes(q) ||
+        (e.notes||'').toLowerCase().includes(q)
+      );
+    }
+    countEl.textContent = `${shown.length} / ${dict.length}`;
+    if (!shown.length) {
+      list.innerHTML = `<div class="empty">${dict.length?'No matches.':'No entries yet.'}</div>`; return;
+    }
+    const sorted = [...shown].reverse();
+    list.innerHTML = sorted.map(e => {
+      const rules = parseContextual(e.shortcuts);
+      const ipa = convertShortcuts(rules.default || e.shortcuts);
+      return `
+        <div class="dict-entry">
+          <div class="word">${escapeHtml(e.word)}</div>
+          <div class="ipa">${escapeHtml(ipa)||'?'}</div>
+          <div class="shortcuts">code: ${escapeHtml(e.shortcuts).replace(/\n/g,' ↵ ')}</div>
+          <div class="tags">
+            ${e.pos?`<span class="tag pos">${escapeHtml(e.pos)}</span>`:''}
+            ${e.register?`<span class="tag register">${escapeHtml(e.register)}</span>`:''}
+            ${e.notes?`<span class="tag">${escapeHtml(e.notes)}</span>`:''}
+          </div>
+          <div class="dict-actions">
+            <button class="secondary small" onclick="startDictEdit('${e.id}')">Edit</button>
+            <button class="secondary small danger" onclick="removeDictEntry('${e.id}')">Delete</button>
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  function runTyper() {
+    const raw = document.getElementById('typerInput').value.trim();
+    const posFilter = (document.getElementById('typerPos').value||'').trim().toLowerCase();
+    const results = document.getElementById('typerResults');
+    if (!raw) { results.innerHTML = `<div class="empty">Type a phrase first.</div>`; return; }
+    const lines = raw.split('\n').map(l=>l.trim()).filter(Boolean);
+    let html = '';
+    lines.forEach(line => {
+      const tokens = line.split(/[\s]+/).filter(t=>t.length);
+      html += `<div style="margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border);">`;
+      html += `<div style="font-size:0.9rem;color:var(--muted);margin-bottom:6px;">Phrase: ${escapeHtml(line)}</div>`;
+      tokens.forEach((token, idx) => {
+        const prev = tokens[idx-1]||'';
+        const next = tokens[idx+1]||'';
+        let matches = findDictMatches(token);
+        if (posFilter) matches = matches.filter(e => (e.pos||'').toLowerCase() === posFilter || (e.pos||'').toLowerCase().startsWith(posFilter));
+        if (!matches.length) {
+          html += `<div class="typer-result missing"><div class="ortho">${escapeHtml(token)}</div><div class="ipa">not in dictionary</div></div>`;
+        } else {
+          matches.forEach(m => {
+            const code = chooseCode(m, prev, next);
+            const ipa = convertShortcuts(code);
+            html += `<div class="typer-result">
+              <div class="ortho">${escapeHtml(token)}${m.pos?' <span class="tag pos">'+escapeHtml(m.pos)+'</span>':''}</div>
+              <div class="ipa">${escapeHtml(ipa)}</div>
+              <div class="meta">used: ${escapeHtml(code)}</div>
+            </div>`;
+          });
+        }
+      });
+      html += `</div>`;
+    });
+    results.innerHTML = html || `<div class="empty">No results.</div>`;
+  }
+
+  // Actions
+  function startEdit(id) {
+    const item = items.find(i => i.id === id); if (!item) return;
+    editId = id;
+    document.getElementById('editId').value = id;
+    document.getElementById('symbol').value = item.symbol;
+    document.getElementById('shortcut').value = item.shortcut;
+    document.getElementById('name').value = item.name||'';
+    document.getElementById('example').value = item.example||'';
+    document.getElementById('spaceAfter').checked = item.spaceAfter;
+    document.getElementById('saveBtn').textContent = 'Update Mapping';
+    document.getElementById('cancelEdit').style.display = 'inline-block';
+  }
+  function cancelEdit() {
+    editId = null;
+    document.getElementById('addForm').reset();
+    document.getElementById('spaceAfter').checked = true;
+    document.getElementById('saveBtn').textContent = 'Add Mapping';
+    document.getElementById('cancelEdit').style.display = 'none';
+    document.getElementById('formStatus').textContent = '';
+  }
+  function removeItem(id) {
+    if (!confirm('Delete mapping?')) return;
+    items = items.filter(i => i.id !== id); saveSymbols(); refreshSymbols();
+  }
+  function insertShortcut(sc) {
+    const ta = document.getElementById('shortcutInput');
+    ta.value += (ta.value && !ta.value.endsWith(' ') ? ' ' : '') + sc;
+    ta.focus();
+  }
+  function convert() {
+    const input = document.getElementById('shortcutInput').value.trim();
+    const status = document.getElementById('convertStatus');
+    const out = document.getElementById('ipaOutput');
+    if (!input) { out.textContent=''; status.textContent=''; return; }
+    out.textContent = convertShortcuts(input);
+    status.className = 'status ok';
+    status.textContent = 'Converted';
+  }
+  function startDictEdit(id) {
+    const e = dict.find(x => x.id === id); if (!e) return;
+    dictEditId = id;
+    document.getElementById('dictEditId').value = id;
+    document.getElementById('dictWord').value = e.word;
+    document.getElementById('dictShortcuts').value = e.shortcuts||'';
+    document.getElementById('dictPos').value = e.pos||'';
+    document.getElementById('dictRegister').value = e.register||'';
+    document.getElementById('dictCollocation').value = e.collocation||'';
+    document.getElementById('dictNotes').value = e.notes||'';
+    document.getElementById('dictSaveBtn').textContent = 'Update Entry';
+    document.getElementById('dictCancelEdit').style.display = 'inline-block';
+    switchMode('dictionary');
+  }
+  function cancelDictEdit() {
+    dictEditId = null;
+    document.getElementById('dictForm').reset();
+    document.getElementById('dictSaveBtn').textContent = 'Add Entry';
+    document.getElementById('dictCancelEdit').style.display = 'none';
+    document.getElementById('dictFormStatus').textContent = '';
+  }
+  function removeDictEntry(id) {
+    if (!confirm('Delete entry?')) return;
+    dict = dict.filter(e => e.id !== id); saveDict(); renderDict();
+  }
+  function switchMode(mode) {
+    document.querySelectorAll('.mode-tab').forEach(t => t.classList.toggle('active', t.dataset.mode === mode));
+    document.getElementById('symbolsMode').classList.toggle('hidden', mode !== 'symbols');
+    document.getElementById('dictionaryMode').classList.toggle('hidden', mode !== 'dictionary');
+    document.getElementById('cutterMode').classList.toggle('hidden', mode !== 'cutter');
+    document.getElementById('typerMode').classList.toggle('hidden', mode !== 'typer');
+    document.getElementById('guideMode').classList.toggle('hidden', mode !== 'guide');
+    if (mode === 'dictionary') renderDict();
+  }
+
+  // Events
+  document.querySelectorAll('.mode-tab').forEach(btn => btn.addEventListener('click', () => switchMode(btn.dataset.mode)));
+  document.getElementById('tabs').addEventListener('click', e => {
+    if (e.target.classList.contains('tab')) { currentCat = e.target.dataset.cat; cancelEdit(); refreshSymbols(); }
+  });
+  document.getElementById('insertSpaceBtn').addEventListener('click', () => {
+    document.getElementById('symbol').value = ' '; document.getElementById('symbol').focus();
+  });
+  document.getElementById('addForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const symbol = normalizeSymbol(document.getElementById('symbol').value);
+    const shortcut = document.getElementById('shortcut').value.trim();
+    const name = document.getElementById('name').value.trim();
+    const example = document.getElementById('example').value.trim();
+    const spaceAfter = document.getElementById('spaceAfter').checked;
+    const status = document.getElementById('formStatus');
+    if (!shortcut) { status.className='status error'; status.textContent='Shortcut required'; return; }
+    if (/\s/.test(shortcut)) { status.className='status error'; status.textContent='No spaces in shortcut'; return; }
+    if (isShortcutTaken(shortcut, editId)) { status.className='status error'; status.textContent='Shortcut already used'; return; }
+    if (editId) {
+      const item = items.find(i => i.id === editId);
+      if (item) Object.assign(item, {symbol, shortcut, name, example, spaceAfter});
+    } else {
+      items.push({id:uid(), category:currentCat, symbol, shortcut, name, example, spaceAfter});
+    }
+    saveSymbols(); cancelEdit(); refreshSymbols();
+    status.className='status ok'; status.textContent='Saved'; setTimeout(()=>status.textContent='',1400);
+  });
+  document.getElementById('cancelEdit').addEventListener('click', cancelEdit);
+  document.getElementById('convertBtn').addEventListener('click', convert);
+  document.getElementById('clearInput').addEventListener('click', () => {
+    document.getElementById('shortcutInput').value=''; document.getElementById('ipaOutput').textContent=''; document.getElementById('convertStatus').textContent='';
+  });
+  document.getElementById('copyBtn').addEventListener('click', () => {
+    navigator.clipboard.writeText(document.getElementById('ipaOutput').textContent)
+      .then(()=>{ document.getElementById('convertStatus').className='status ok'; document.getElementById('convertStatus').textContent='Copied'; });
+  });
+  document.getElementById('wrapBrackets').addEventListener('click', () => {
+    const el=document.getElementById('ipaOutput'); const t=el.textContent.trim(); if(t) el.textContent=`[${t}]`;
+  });
+  document.getElementById('wrapSlashes').addEventListener('click', () => {
+    const el=document.getElementById('ipaOutput'); const t=el.textContent.trim(); if(t) el.textContent=`/${t}/`;
+  });
+  document.getElementById('sendToDictBtn').addEventListener('click', () => {
+    const code = document.getElementById('shortcutInput').value.trim();
+    if (!code) { alert('Type something first'); return; }
+    switchMode('dictionary'); cancelDictEdit();
+    document.getElementById('dictShortcuts').value = code;
+    document.getElementById('dictWord').focus();
+  });
+  document.getElementById('panelFilter').addEventListener('change', renderPanel);
+
+  document.getElementById('exportBtn').addEventListener('click', () => {
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(new Blob([JSON.stringify(items,null,2)],{type:'application/json'}));
+    a.download='custom-ipa-symbols.json'; a.click();
+  });
+  document.getElementById('importBtn').addEventListener('click', () => document.getElementById('importFile').click());
+  document.getElementById('importFile').addEventListener('change', e => {
+    const file=e.target.files[0]; if(!file) return;
+    const reader=new FileReader();
+    reader.onload=ev=>{
+      try {
+        const data=JSON.parse(ev.target.result);
+        if(!Array.isArray(data)) throw 0;
+        items=data.map(it=>({...it,symbol:normalizeSymbol(it.symbol??'')}));
+        saveSymbols(); refreshSymbols();
+        document.getElementById('dataStatus').className='status ok';
+        document.getElementById('dataStatus').textContent=`Imported ${items.length}`;
+      } catch { document.getElementById('dataStatus').className='status error'; document.getElementById('dataStatus').textContent='Import failed'; }
+    };
+    reader.readAsText(file); e.target.value='';
+  });
+  document.getElementById('clearBtn').addEventListener('click', () => {
+    if(confirm('Clear all symbols?')){ items=[]; saveSymbols(); refreshSymbols(); }
+  });
+
+  document.getElementById('dictForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const word=document.getElementById('dictWord').value.trim();
+    const shortcuts=document.getElementById('dictShortcuts').value.trim();
+    const pos=document.getElementById('dictPos').value.trim();
+    const register=document.getElementById('dictRegister').value.trim();
+    const collocation=document.getElementById('dictCollocation').value.trim();
+    const notes=document.getElementById('dictNotes').value.trim();
+    const status=document.getElementById('dictFormStatus');
+    if(!word||!shortcuts){ status.className='status error'; status.textContent='Word and code required'; return; }
+    if(dictEditId){
+      const entry=dict.find(x=>x.id===dictEditId);
+      if(entry) Object.assign(entry,{word,shortcuts,pos,register,collocation,notes});
+    } else {
+      dict.push({id:uid(),word,shortcuts,pos,register,collocation,notes});
+    }
+    saveDict(); cancelDictEdit(); renderDict();
+    status.className='status ok'; status.textContent='Saved'; setTimeout(()=>status.textContent='',1400);
+  });
+  document.getElementById('dictCancelEdit').addEventListener('click', cancelDictEdit);
+  document.getElementById('dictSearch').addEventListener('input', renderDict);
+  document.getElementById('dictExportBtn').addEventListener('click', () => {
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(new Blob([JSON.stringify(dict,null,2)],{type:'application/json'}));
+    a.download='pronunciation-dictionary.json'; a.click();
+  });
+  document.getElementById('dictImportBtn').addEventListener('click', () => document.getElementById('dictImportFile').click());
+  document.getElementById('dictImportFile').addEventListener('change', e => {
+    const file=e.target.files[0]; if(!file) return;
+    const reader=new FileReader();
+    reader.onload=ev=>{
+      try {
+        const data=JSON.parse(ev.target.result);
+        if(!Array.isArray(data)) throw 0;
+        dict=data.map(e=>({
+          id:e.id||uid(), word:e.word||'', shortcuts:e.shortcuts||e.ipa||'',
+          pos:e.pos||'', register:e.register||'', collocation:e.collocation||'', notes:e.notes||''
+        }));
+        saveDict(); renderDict();
+        document.getElementById('dictDataStatus').className='status ok';
+        document.getElementById('dictDataStatus').textContent=`Imported ${dict.length}`;
+      } catch { document.getElementById('dictDataStatus').className='status error'; document.getElementById('dictDataStatus').textContent='Import failed'; }
+    };
+    reader.readAsText(file); e.target.value='';
+  });
+  document.getElementById('dictClearBtn').addEventListener('click', () => {
+    if(confirm('Clear entire dictionary?')){ dict=[]; saveDict(); renderDict(); }
+  });
+
+  document.getElementById('cutPreviewBtn').addEventListener('click', previewCutter);
+  document.getElementById('cutGenerateBtn').addEventListener('click', generateCutter);
+  document.getElementById('typerRunBtn').addEventListener('click', runTyper);
+  document.getElementById('typerClearBtn').addEventListener('click', () => {
+    document.getElementById('typerInput').value='';
+    document.getElementById('typerPos').value='';
+    document.getElementById('typerResults').innerHTML=`<div class="empty">Type a phrase and click Show Pronunciations.</div>`;
+    document.querySelectorAll('.pos-chip').forEach(c=>c.classList.remove('active'));
+  });
+  document.getElementById('posChips').addEventListener('click', e => {
+    if(e.target.classList.contains('pos-chip')){
+      const pos=e.target.dataset.pos;
+      document.getElementById('typerPos').value=pos;
+      document.querySelectorAll('.pos-chip').forEach(c=>c.classList.toggle('active',c.dataset.pos===pos));
+    }
+  });
+
+  // Init
+  loadSymbols(); loadDict(); refreshSymbols();
+</script>
+</body>
+</html>

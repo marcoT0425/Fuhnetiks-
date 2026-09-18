@@ -1,0 +1,749 @@
+[
+  {
+    "id": "mu12acvamws2g",
+    "category": "vowels",
+    "symbol": "ɪ",
+    "shortcut": "I",
+    "name": "kit",
+    "example": "kid",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu12czkwlfyje",
+    "category": "vowels",
+    "symbol": "ɛ",
+    "shortcut": "E",
+    "name": "dress",
+    "example": "bet",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu12e28kqo3ue",
+    "category": "vowels",
+    "symbol": "a",
+    "shortcut": "A",
+    "name": "trap",
+    "example": "cat",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu12fg4u7dh3c",
+    "category": "vowels",
+    "symbol": "ɔ",
+    "shortcut": "O",
+    "name": "lot and cloth",
+    "example": "got, often",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu12gnz2ukmzf",
+    "category": "vowels",
+    "symbol": "ɐ",
+    "shortcut": "U",
+    "name": "strut",
+    "example": "cut",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu12ibg95dcy7",
+    "category": "vowels",
+    "symbol": "ɵ",
+    "shortcut": "UU",
+    "name": "foot",
+    "example": "book",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu12jpkvazhgb",
+    "category": "vowels",
+    "symbol": "ɑː",
+    "shortcut": "AA",
+    "name": "bath palm start",
+    "example": "dance",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu12l4exikzt3",
+    "category": "vowels",
+    "symbol": "əː",
+    "shortcut": "UR",
+    "name": "nurse",
+    "example": "bird",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu12nea50bynr",
+    "category": "vowels",
+    "symbol": "ɪi",
+    "shortcut": "EE",
+    "name": "fleece",
+    "example": "feed",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu12ot6zhjgyl",
+    "category": "vowels",
+    "symbol": "ɛɪ",
+    "shortcut": "EI",
+    "name": "face",
+    "example": "day",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu12qw0y2cbd2",
+    "category": "vowels",
+    "symbol": "oː",
+    "shortcut": "OH",
+    "name": "caught north force cure",
+    "example": "law",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu12tleyn460d",
+    "category": "vowels",
+    "symbol": "ɵʊ",
+    "shortcut": "OU",
+    "name": "goat",
+    "example": "no",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu12v323o853d",
+    "category": "vowels",
+    "symbol": "ʉː",
+    "shortcut": "OO",
+    "name": "goose",
+    "example": "food",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu12wtu9na6yr",
+    "category": "vowels",
+    "symbol": "ɑɪ",
+    "shortcut": "AI",
+    "name": "price",
+    "example": "bike",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu12y12apywd8",
+    "category": "vowels",
+    "symbol": "oɪ",
+    "shortcut": "OI",
+    "name": "choice",
+    "example": "boy",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu13011gsxlk7",
+    "category": "vowels",
+    "symbol": "aʊ",
+    "shortcut": "AU",
+    "name": "mouth",
+    "example": "out",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu13288ua8yzp",
+    "category": "vowels",
+    "symbol": "ɪː",
+    "shortcut": "IE",
+    "name": "near",
+    "example": "ear",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu1344hbt5icv",
+    "category": "vowels",
+    "symbol": "ɛː",
+    "shortcut": "EH",
+    "name": "square",
+    "example": "bear",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu137mhdarfmg",
+    "category": "vowels",
+    "symbol": "i",
+    "shortcut": "II",
+    "name": "happy",
+    "example": "city",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu1391rnlkgux",
+    "category": "vowels",
+    "symbol": "ə",
+    "shortcut": "UH",
+    "name": "comma letter",
+    "example": "about",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu13d7s37894s",
+    "category": "vowels",
+    "symbol": "iːɫ",
+    "shortcut": "IL",
+    "name": "real",
+    "example": "deal",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu13g98xeya6z",
+    "category": "vowels",
+    "symbol": "ɪɫ",
+    "shortcut": "JL",
+    "name": "milk",
+    "example": "will",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu13hf069tgiv",
+    "category": "vowels",
+    "symbol": "ɛɪɫ",
+    "shortcut": "EL",
+    "name": "fail",
+    "example": "sale",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu13kmjvp59t6",
+    "category": "vowels",
+    "symbol": "ɛɫ",
+    "shortcut": "FL",
+    "name": "fell",
+    "example": "Welsh",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu13lxd1cqtxe",
+    "category": "vowels",
+    "symbol": "aɫ",
+    "shortcut": "AL",
+    "name": "shall",
+    "example": "pal",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu13o1pn35bkx",
+    "category": "vowels",
+    "symbol": "ɔɫ",
+    "shortcut": "OL",
+    "name": "doll",
+    "example": "dollhouse",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu13qi4ycvyer",
+    "category": "vowels",
+    "symbol": "oːɫ",
+    "shortcut": "QL",
+    "name": "ball",
+    "example": "all",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu13tnpcnivn8",
+    "category": "vowels",
+    "symbol": "ɒʊɫ",
+    "shortcut": "WL",
+    "name": "goal",
+    "example": "toll",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu13vsdiaufit",
+    "category": "vowels",
+    "symbol": "ʊɫ",
+    "shortcut": "UL",
+    "name": "bull",
+    "example": "pull",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu13x37524ql6",
+    "category": "vowels",
+    "symbol": "uːɫ",
+    "shortcut": "VL",
+    "name": "cool",
+    "example": "school",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu1426lq5h9no",
+    "category": "diacritics",
+    "symbol": "ˑ",
+    "shortcut": "'L",
+    "name": "mad",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu144fzt6zzjl",
+    "category": "vowels",
+    "symbol": "e",
+    "shortcut": "EN",
+    "name": "length",
+    "example": "with dress",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu148esiycrfq",
+    "category": "diacritics",
+    "symbol": "ː",
+    "shortcut": ":L",
+    "name": "lose",
+    "example": "long vowel",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu14d5pqrf33a",
+    "category": "vowels",
+    "symbol": "œ",
+    "shortcut": "OE",
+    "name": "oeuvre",
+    "example": "-",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu14edyrm29sj",
+    "category": "vowels",
+    "symbol": "ø",
+    "shortcut": "O/",
+    "name": "Möbius but short",
+    "example": "-",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu14hflhmlo35",
+    "category": "vowels",
+    "symbol": "ɒ̃",
+    "shortcut": "O~",
+    "name": "croissant",
+    "example": "bon",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu14j9qykhxnh",
+    "category": "vowels",
+    "symbol": "ɛ̃",
+    "shortcut": "E~",
+    "name": "fin de siècle",
+    "example": "-",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu14kpdayigjq",
+    "category": "vowels",
+    "symbol": "y",
+    "shortcut": "YU",
+    "name": "debussy or extreme goose",
+    "example": "-",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu14n024aizo4",
+    "category": "vowels",
+    "symbol": "ʉ",
+    "shortcut": "OQ",
+    "name": "influence",
+    "example": "fruition",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu14u8f6tmch1",
+    "category": "intonation",
+    "symbol": "ˈ",
+    "shortcut": "'",
+    "name": "intonations stress",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu14usqobf9d8",
+    "category": "intonation",
+    "symbol": "ˌ",
+    "shortcut": ",",
+    "name": "unstressed intonation",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu15ohxev4zc1",
+    "category": "consonants",
+    "symbol": "p",
+    "shortcut": "P",
+    "name": "pit",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu15oowc3r495",
+    "category": "consonants",
+    "symbol": "b",
+    "shortcut": "B",
+    "name": "boy",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu15p0eomayp3",
+    "category": "consonants",
+    "symbol": "t",
+    "shortcut": "T",
+    "name": "tip",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu166k4ljwnri",
+    "category": "consonants",
+    "symbol": "d",
+    "shortcut": "D",
+    "name": "din",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu16rxx2ygt8k",
+    "category": "consonants",
+    "symbol": "k",
+    "shortcut": "K",
+    "name": "cat",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu16s2twmfeb8",
+    "category": "consonants",
+    "symbol": "ɡ",
+    "shortcut": "G",
+    "name": "go",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu16sgo19wxa7",
+    "category": "consonants",
+    "symbol": "f",
+    "shortcut": "F",
+    "name": "fit",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu16sp472m79s",
+    "category": "consonants",
+    "symbol": "θ",
+    "shortcut": "TH",
+    "name": "thin",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu170jt3kjazq",
+    "category": "consonants",
+    "symbol": "s",
+    "shortcut": "S",
+    "name": "sin",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu170zda31hbx",
+    "category": "consonants",
+    "symbol": "ʃ",
+    "shortcut": "SH",
+    "name": "ship",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu172vu3yy1qf",
+    "category": "consonants",
+    "symbol": "h",
+    "shortcut": "H",
+    "name": "hit",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu17375hbzgsm",
+    "category": "consonants",
+    "symbol": "v",
+    "shortcut": "V",
+    "name": "vine",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu173edonje6w",
+    "category": "consonants",
+    "symbol": "ð",
+    "shortcut": "DH",
+    "name": "this",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu173rxm2j2qr",
+    "category": "consonants",
+    "symbol": "z",
+    "shortcut": "Z",
+    "name": "zinc",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu1741h5rhk7v",
+    "category": "consonants",
+    "symbol": "ʒ",
+    "shortcut": "ZH",
+    "name": "measure",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu174ipik0qk0",
+    "category": "consonants",
+    "symbol": "tʃ",
+    "shortcut": "CH",
+    "name": "chin",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu1755ykpgg4e",
+    "category": "consonants",
+    "symbol": "dʒ",
+    "shortcut": "JH",
+    "name": "juice",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu175hnut3lot",
+    "category": "consonants",
+    "symbol": "m",
+    "shortcut": "M",
+    "name": "man",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu177ohs5uhp4",
+    "category": "consonants",
+    "symbol": "n",
+    "shortcut": "N",
+    "name": "no",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu177u6vtzij9",
+    "category": "consonants",
+    "symbol": "ŋ",
+    "shortcut": "NG",
+    "name": "sing",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu178abw2ld0o",
+    "category": "consonants",
+    "symbol": "ʍ",
+    "shortcut": "HW",
+    "name": "whine (old)",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu178j9ntxrxu",
+    "category": "consonants",
+    "symbol": "ɹ",
+    "shortcut": "R",
+    "name": "red",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu178wcyncv54",
+    "category": "consonants",
+    "symbol": "j",
+    "shortcut": "Y",
+    "name": "yes",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu179bva4cfd4",
+    "category": "consonants",
+    "symbol": "w",
+    "shortcut": "W",
+    "name": "was",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu179rpnoc5n2",
+    "category": "consonants",
+    "symbol": "l",
+    "shortcut": "L",
+    "name": "love",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu179znaxpuis",
+    "category": "consonants",
+    "symbol": "x",
+    "shortcut": "KH",
+    "name": "loch",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu17ayf4kj3ui",
+    "category": "consonants",
+    "symbol": "ʔ",
+    "shortcut": "XX",
+    "name": "glottal butter",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu17bc2t9liv8",
+    "category": "consonants",
+    "symbol": "ʋ",
+    "shortcut": "RW",
+    "name": "labiodental red",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu17c2plhg505",
+    "category": "consonants",
+    "symbol": "ʁ",
+    "shortcut": "RR",
+    "name": "native croissant",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu17czwzd94rn",
+    "category": "consonants",
+    "symbol": "χ",
+    "shortcut": "HK",
+    "name": "sounded loch",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu17duprongxo",
+    "category": "intonation",
+    "symbol": "|",
+    "shortcut": "|",
+    "name": "stop",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu17esjcdmym6",
+    "category": "intonation",
+    "symbol": "‖",
+    "shortcut": "||",
+    "name": "stop major",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu17fhtafb5y3",
+    "category": "intonation",
+    "symbol": "↗",
+    "shortcut": "^T",
+    "name": "rising terminal",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu17fvq65yo8n",
+    "category": "intonation",
+    "symbol": "↘",
+    "shortcut": "vT",
+    "name": "falling terminal",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu17hj1s3ycy0",
+    "category": "intonation",
+    "symbol": ".",
+    "shortcut": ".",
+    "name": "Separator",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu18pulhigfnc",
+    "category": "vowels",
+    "symbol": "ɒʊ",
+    "shortcut": "VU",
+    "name": "goal-base",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu18s658r6u64",
+    "category": "vowels",
+    "symbol": "u",
+    "shortcut": "UV",
+    "name": "cool-unshortened-base",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu18spyn4dkw2",
+    "category": "vowels",
+    "symbol": "ɫ",
+    "shortcut": "L~",
+    "name": "dark l",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu18tjqui10nf",
+    "category": "vowels",
+    "symbol": "ʊ",
+    "shortcut": "UZ",
+    "name": "Trad-put",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu18vs2zp54yq",
+    "category": "intonation",
+    "symbol": "̰",
+    "shortcut": "FR",
+    "name": "vocal fry",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu1askdbwqoy4",
+    "category": "vowels",
+    "symbol": "æ",
+    "shortcut": "AE",
+    "name": "cat in RP",
+    "example": "",
+    "spaceAfter": false
+  },
+  {
+    "id": "mu2fcgdoy25f3",
+    "category": "vowels",
+    "symbol": " ",
+    "shortcut": "_",
+    "name": "space",
+    "example": "",
+    "spaceAfter": false
+  }
+]
