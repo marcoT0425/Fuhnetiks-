@@ -38,3 +38,24 @@ Here's the set of the vowels in UK English:
 | –           | –  | ɒ̃          | Non-anglicised pronunciation of "croissant"          | _(Not used)_ |
 | –           | –  | ɛ̃          | Non-anglicised pronunciation of "Chopin"             | _(Not used)_ |
 | –           | –  | y          | Non-anglicised pronunciation of "Debussy"            | _(Not used)_ |
+
+## HOW TO USE 
+1. When forming the cutter for stress, it's like `(') P L EI | Y I NG$`. (') means that the stress marker is optional unless followed by a $ sign, like the word `play` does not require an accent because it is a one-syllable word, while `playing` requires a first stress.
+2. For forming letter changes, it's like `tid(y)|ies|ied|ying`: the bracket means that the letter is necessary for the base form, but is omitted for reflective or plural forms. Use an asterisk, like `* P L EI` if you want to change the whole pronunciation ignoring the stem of a reflective form or the plural.
+3. For pronunciation changes driven by consonants and vowels, format like
+
+default: DH UH
+
+before vowel: DH EE
+
+before consonant: DH UH
+
+4. Pattern features
+
+colou*r → optional letter (put the optional letter next to the glyph)
+
+reali{s|z}e → alternation
+
+ice_cream → multi-word (underscore as space)
+
+`[eight`] → reference
