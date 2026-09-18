@@ -58,4 +58,4 @@ reali{s|z}e → alternation
 
 ice_cream → multi-word (underscore as space)
 
-`[eight`] → reference
+[eight] → reference
