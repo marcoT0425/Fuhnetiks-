@@ -30,7 +30,7 @@ Here's the set of the vowels in UK English:
 | CURE        | ʊə | **oː** or ɔː| Monophthongisation, with CURE-FORCE merge           | oːɫ          |
 | HAPP**Y**   | ɪ  | i          | Happy tensing, aligns with the fleece vowel          | _(RARE)_     |
 | -           | ɪ~ə | ə **or** ɪ̽ (ᵻ) | Colloquially known as "schwi", used in words like "lettuce" | N/A, and often merged with the syllabic consonant |
-| -           | ʊ~ə | ə **or** ɵ̽ / ʊ̽ (ᵿ) | Colloquially known as "schwu", used in words like "education"|N/A, and often merged with the syllabic consonant |
+| -           | ʊ~ə | ə **or** ʉ / ʊ̈ (ᵿ) | Colloquially known as "schwu", used in words like "education"|N/A, and often merged with the syllabic consonant |
 | –           | (ə)  | ᵊ          | Optional schwa, used in words like secretary, where it can be pronounced with one optional syllable. | N/A, and often merged with the syllabic consonant |
 | COMM**A** LETT**ER** | ə  | ə | Largely converged because UK English is non-rhotic   | əɫ (note: this is a syllabic consonant |
 | –           | –  | œ          | Non-anglicised pronunciation of "oeuvre"             | _(Not used)_ |
