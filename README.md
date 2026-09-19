@@ -33,10 +33,10 @@ Here's the set of the vowels in UK English:
 | -           | ʊ~ə | ə **or** ʉ / ʊ̈ (ᵿ) | Colloquially known as "schwu", used in words like "education"|N/A, and often merged with the syllabic consonant |
 | –           | (ə)  | ᵊ          | Optional schwa, used in words like secretary, where it can be pronounced with one optional syllable. | N/A, and often merged with the syllabic consonant |
 | COMM**A** LETT**ER** | ə  | ə | Largely converged because UK English is non-rhotic   | əɫ (note: this is a syllabic consonant |
-| –           | –  | œ          | Non-anglicised pronunciation of "oeuvre"             | _(Not used)_ |
-| –           | –  | ø          | Non-anglicised pronunciation of "Möbius"             | _(Not used)_ |
-| –           | –  | ɒ̃          | Non-anglicised pronunciation of "croissant"          | _(Not used)_ |
-| –           | –  | ɛ̃          | Non-anglicised pronunciation of "Chopin"             | _(Not used)_ |
+| –           | –  | œ          | Non-anglicised pronunciation of "oeuvre", sometimes anglicised to like the NURSE vowel             | _(Not used)_ |
+| –           | –  | ø          | Non-anglicised pronunciation of "Möbius", sometimes anglicised to like the NURSE vowel             | _(Not used)_ |
+| –           | –  | ɒ̃          | Non-anglicised pronunciation of "croissant", often anglicised to ɒn          | _(Not used)_ |
+| –           | –  | ɛ̃          | Non-anglicised pronunciation of "Chopin", often anglicised to ɛn             | _(Not used)_ |
 | –           | –  | y          | Non-anglicised pronunciation of "Debussy"            | _(Not used)_ |
 
 
@@ -77,7 +77,7 @@ Here's the set of the consonants in UK English: (* = addition)
 | v  | v          | volume |
 | w  | w          | will |
 | ʍ  | ʍ (increasingly rare) | white (without WINE-WHINE merger) |
-| x  | x          | loch (the voiceless velar fricative) * |
+| x  | x          | loch (the voiceless velar fricative), sometimes uses a /k/ or /h/ as a substitute. * |
 | z  | z          | zoo |
 | ʒ  | ʒ          | measure, sometimes as a combination of "z" + "j" |
 | –  | ʔ          | uh-oh, better (in modern MLE) * |
