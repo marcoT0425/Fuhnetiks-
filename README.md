@@ -17,12 +17,12 @@ Here's the set of the vowels in UK English:
 | FOOT        | ʊ  | ɵ          | Fronted and centralised                              | ʊɫ (not fronted) |
 | BATH PALM START   | ɑː | ɑː         |                                                      | ɑːɫ          |
 | NURSE       | ɜː | əː         | Literally a lengthened schwa                         | əːɫ          |
-| FLEECE      | iː | **ɪi** or iː| Can be a diphthongal glide                          | iːɫ          |
+| FLEECE      | iː | **ɪi** or iː| Can be a diphthongal glide                          | iː(ə)ɫ          |
 | FACE        | eɪ | ɛɪ         |                                                      | ɛɪɫ          |
 | THOUGHT NORTH FORCE    | ɔː | oː         | No caught-cot merger. The merger is primarily US-focused. | oːɫ          |
 | GOAT        | **əʊ** or oʊ | ɵʊ | GOAT-fronting                                      | ɒʊɫ (not fronted) |
-| GOOSE       | uː | ʉː         | GOOSE-fronting                                       | uːɫ (not fronted) |
-| PRICE       | aɪ | ɑɪ         | Prefer to ʌɪ                                         | ɑɪɫ          |
+| GOOSE       | uː | ʉː         | GOOSE-fronting                                       | uː(ə)ɫ (not fronted) |
+| PRICE       | aɪ | ɑɪ         | Prefer to ʌɪ                                         | ɑɪɫ / ɑːɫ          |
 | CHOICE      | ɔɪ | oɪ         |                                                      | oɪɫ          |
 | MOUTH       | aʊ | aʊ         |                                                      | aʊɫ          |
 | NEAR        | ɪə | ɪː         | Monophthongisation                                   | ɪːɫ          |
