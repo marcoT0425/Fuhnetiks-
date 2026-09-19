@@ -52,7 +52,7 @@ Here's the set of the consonants in UK English: (* = addition)
 | ð  | ð / v      | this; often substituted with "v" in many UK dialects |
 | f  | f          | fish |
 | g  | ɡ          | girl; and the "g" is preferred to be the single-storey one |
-| g  | ɡ̊ / k      | skill * |
+| –  | ɡ̊ / k      | skill * |
 | h  | h          | hit |
 | j  | j          | yes; the "j" does not mean a true "j" sound in phonics, like "juice" |
 | j  | (j)        | Often drops in words like "suit" or "news", but retained in "few" or "music" |
