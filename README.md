@@ -39,6 +39,49 @@ Here's the set of the vowels in UK English:
 | –           | –  | ɛ̃          | Non-anglicised pronunciation of "Chopin"             | _(Not used)_ |
 | –           | –  | y          | Non-anglicised pronunciation of "Debussy"            | _(Not used)_ |
 
+
+Here's the set of the consonants in UK English: (* = addition)
+
+| RP | SSBE       | Examples / Notes                                     |
+| -- | ---------- | ---------------------------------------------------- | 
+| b  | b          | boy |
+| –  | b̥ / p      | spill * |
+| d  | d          | dog |
+| –  | d̥ / t      | still * |
+| dʒ | dʒ         | juice; not "ʤ", also used as a combination of "d" + "j" with yod-coalescence |
+| ð  | ð / v      | this; often substituted with "v" in many UK dialects |
+| f  | f          | fish |
+| g  | ɡ          | girl; and the "g" is preferred to be the single-storey one |
+| g  | ɡ̊ /        | skill * |
+| h  | h          | hit |
+| j  | j          | yes; the "j" does not mean a true "j" sound in phonics, like "juice" |
+| j  | (j)        | Often drops in words like "suit" or "news", but retained in "few" or "music" |
+| k  | k(ʰ)          | cat |
+| l  | l          | low |
+| l̩  | ᵊɫ         | bottle |
+| l  | ɫ or sometimes vocalised | milk * |
+| m  | m          | minute |
+| m̩  | ᵊm         | bottom |
+| –  | m(p)       | hamster * |
+| n  | n          | no |
+| n̩  | ᵊn         | button |
+| ŋ  | ŋ          | sing |
+| p  | p(ʰ)          | pen |
+| r (occasionally ɾ for medial) | ɹ          | ride, very, prefer "ɹ" instead because the "r" is technically a trill in standard IPA, like the Spanish "perro". In older RP, the tap (ɾ) is occasionally used in medial positions, although its use is becoming archaic or rare today. |
+| s  | s          | so |
+| ʃ  | ʃ          | shape, sometimes as a combination of "s" + "j", especially in words like "tissue", but rarely in words like "assume" |
+| t  | t(ʰ)          | top, butter, got (sometimes / often), and modern usage favours a glottal stop for final positions while both are still very common for medial positions. |
+| –  | ts         | tsunami, mints (often merged with mince, can be transcribed as "(t)s") * |
+| tʃ | tʃ         | chopsticks, often as a combination of "t" + "j", especially in words like "Tuesday" or "natural" |
+| θ  | θ / f      | thin, often fronted to "f" in many UK dialects) |
+| v  | v          | volume |
+| w  | w          | will |
+| ʍ  | ʍ (increasingly rare) | white (without WINE-WHINE merger) |
+| x  | x          | loch (the voiceless velar fricative) * |
+| z  | z          | zoo |
+| ʒ  | ʒ          | measure, sometimes as a combination of "z" + "j" |
+| –  | ʔ          | uh-oh, better (in modern MLE) * |
+
 ## HOW TO USE 
 1. When forming the cutter for stress, it's like `(') P L EI | Y I NG$`. (') means that the stress marker is optional unless followed by a $ sign, like the word `play` does not require an accent because it is a one-syllable word, while `playing` requires a first stress.
 2. For forming letter changes, it's like `tid(y)|ies|ied|ying`: the bracket means that the letter is necessary for the base form, but is omitted for reflective or plural forms. Use an asterisk, like `* P L EI` if you want to change the whole pronunciation ignoring the stem of a reflective form or the plural.
