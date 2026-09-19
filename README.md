@@ -48,7 +48,7 @@ Here's the set of the consonants in UK English: (* = addition)
 | –  | b̥ / p      | spill * |
 | d  | d          | dog |
 | –  | d̥ / t      | still * |
-| dʒ | dʒ         | juice; not "ʤ", also used as a combination of "d" + "j" with yod-coalescence |
+| dʒ | dʒ         | juice; not "ʤ", also used as a combination of "d" + "j" with yod-coalescence. The word "drum" is often pronounced as "jrum" |
 | ð  | ð / v      | this; often substituted with "v" in many UK dialects |
 | f  | f          | fish |
 | g  | ɡ          | girl; and the "g" is preferred to be the single-storey one |
@@ -69,10 +69,10 @@ Here's the set of the consonants in UK English: (* = addition)
 | p  | p(ʰ)          | pen |
 | r (occasionally ɾ for medial) | ɹ          | ride, very, prefer "ɹ" instead because the "r" is technically a trill in standard IPA, like the Spanish "perro". In older RP, the tap (ɾ) is occasionally used in medial positions, although its use is becoming archaic or rare today. |
 | s  | s          | so |
-| ʃ  | ʃ          | shape, sometimes as a combination of "s" + "j", especially in words like "tissue", but rarely in words like "assume" |
+| ʃ  | ʃ          | shape, sometimes as a combination of "s" + "j", especially in words like "tissue", but rarely in words like "assume". The word "strong" is often pronounced as "shchrong" |
 | t  | t(ʰ)          | top, butter, got (sometimes / often), and modern usage favours a glottal stop for final positions while both are still very common for medial positions. |
 | –  | ts         | tsunami, mints (often merged with mince, can be transcribed as "(t)s") * |
-| tʃ | tʃ         | chopsticks, often as a combination of "t" + "j", especially in words like "Tuesday" or "natural" |
+| tʃ | tʃ         | chopsticks, often as a combination of "t" + "j", especially in words like "Tuesday" or "natural". The word "train" is often pronounced as "chrain" |
 | θ  | θ / f      | thin, often fronted to "f" in many UK dialects) |
 | v  | v          | volume |
 | w  | w          | will |
